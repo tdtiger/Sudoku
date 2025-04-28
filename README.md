@@ -22,6 +22,7 @@ sudoku_solver.exeまたはsudoku_solver.cppをコンパイルして得られる�
 ※デフォルトのdata.txtは約2400msで答えが見つかります．
 
 <h2>実装のだいたいの手順</h2>
+
 1. 盤面を表すデータ構造の決定
 1. `PrintBoard()` 関数作成
 1. `isValid()` 関数作成
