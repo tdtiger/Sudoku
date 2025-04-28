@@ -5,6 +5,8 @@
 using namespace std;
 using namespace chrono;
 
+void PrintBoard();
+
 // 盤面を保存する変数
 vector<vector<int>> board(9, vector<int>(9, 0));
 
@@ -25,7 +27,7 @@ void FromKeyboard(){
 // 盤面をファイルから受け取る関数
 void FromFile(){
     // 問題ファイルを開く準備
-    ifstream question("data.csv");
+    ifstream question("data.txt");
     if(!question.is_open()){
         cout << "data isn't available." << endl;
         return;
@@ -34,9 +36,12 @@ void FromFile(){
     for(int i = 0; i < 9; i++){
         for(int j = 0; j < 9; j++){
             question >> board.at(i).at(j);
+            if(question.fail())
+                cout << "error!" << endl;
         }
     }
 
+    question.close();
 }
 
 // 盤面を表示する関数
