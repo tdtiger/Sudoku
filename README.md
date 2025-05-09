@@ -21,6 +21,14 @@ sudoku_solver.exeまたはsudoku_solver.cppをコンパイルして得られる�
 
 ※デフォルトのdata.txtは約2400msで答えが見つかります．
 
+<h2>デモ</h2>
+<p>
+GitHubPages上で動作する，JavaScriptで書き直したものを公開しました．
+ただし，ファイルからの読み込みにしか対応しておらず，結果の出力はコンソールに行われます．
+cssでの整形すらしてません．
+</p>
+リンク：https://tdtiger.github.io/Sudoku/index.html
+
 <h2>実装のだいたいの手順</h2>
 
 1. 盤面を表すデータ構造の決定
