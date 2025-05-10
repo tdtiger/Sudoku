@@ -1,14 +1,27 @@
 let board = [
-    [5, 3, 0, 0, 7, 0, 0, 0, 0],
-    [6, 0, 0, 1, 9, 5, 0, 0, 0],
-    [0, 9, 8, 0, 0, 0, 0, 6, 0],
-    [8, 0, 0, 0, 6, 0, 0, 0, 3],
-    [4, 0, 0, 8, 0, 3, 0, 0, 1],
-    [7, 0, 0, 0, 2, 0, 0, 0, 6],
-    [0, 6, 0, 0, 0, 0, 2, 8, 0],
-    [0, 0, 0, 4, 1, 9, 0, 0, 5],
-    [0, 0, 0, 0, 8, 0, 0, 7, 9]
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
+
+function UpdateTable(){
+    let table = document.getElementById("sudoku_table");
+    for(let row = 0; row < 9; row++){
+        for(let col = 0; col < 9; col++){
+            let cell = table.rows[row].cells[col];
+            if(board[row][col] === 0)
+                cell.textContent = " ";
+            else
+                cell.textContent = board[row][col];
+        }
+    }
+}
 
 let form = document.forms.filein;
 form.question.addEventListener('change', function(e){
@@ -17,6 +30,9 @@ form.question.addEventListener('change', function(e){
     reader.readAsText(result);
     reader.addEventListener('load', function(e){
         board = reader.result.split('\n').map(line => line.split(' ').map(Number));
+    });
+    reader.addEventListener('loadend', function(e){
+        UpdateTable();
     });
 });
 
@@ -56,12 +72,18 @@ function Solve(){
 }
 
 function main(){
+    let start = performance.now();
+
     if(Solve())
         console.log("Success!");
     else
         console.log("Faile...");
 
+    let end = performance.now();
+
     console.log(board.map(row => row.join(" ")).join("\n"));
+    UpdateTable();
+    document.getElementById("time").textContent = "Time: " + (end - start).toFixed(5) + "ms";
 }
 
 let btn = document.getElementById("sub");

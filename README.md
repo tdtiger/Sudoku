@@ -24,10 +24,9 @@ sudoku_solver.exeまたはsudoku_solver.cppをコンパイルして得られる�
 <h2>デモ</h2>
 <p>
 GitHubPages上で動作する，JavaScriptで書き直したものを公開しました．
-ただし，ファイルからの読み込みにしか対応しておらず，結果の出力はコンソールに行われます．
-cssでの整形すらしてません．
+ただし，ファイルからの読み込みにしか対応していません．
 </p>
-リンク：https://tdtiger.github.io/Sudoku/index.html
+リンク：https://tdtiger.github.io/Sudoku/demo/index.html
 
 <h2>実装のだいたいの手順</h2>
 
@@ -36,7 +35,3 @@ cssでの整形すらしてません．
 1. `isValid()` 関数作成
 1. `Solve()` 関数作成
 1. `FromKeyboard()` 関数， `FromFile()` 関数作成
-
-<h2>予定</h2>
-数独の問題を生成する `sudoku_generate.cpp` も作りたい．<br>
-↑一応仮完成
