@@ -1,8 +1,22 @@
-#sudoku_table{
-    border-collapse: collapse;
-    margin: 20px 0;
+body{
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    background-color: #f0f0f0;
 }
 
+h1{
+    color: #333;
+}
+
+#sudoku_table{
+    border-collapse: collapse;
+    margin: 20px auto;
+    background-color: white;
+}
+
+/* 各セルの大きさなど */
 #sudoku_table td{
     width: 40px;
     height: 40px;
@@ -13,18 +27,33 @@
     box-sizing: border-box;
 }
 
+/* 3の倍数番目のセルの下線を太く */
 #sudoku_table tr:nth-child(3n) {
-    border-bottom: 2px solid #000;
+    border-bottom: 3px solid #000;
 }
 
+/* 3の倍数番目のセルの右線を太く */
 #sudoku_table tr td:nth-child(3n){
-    border-right: 2px solid #000;
+    border-right: 3px solid #000;
 }
 
+/* 1行目の上線を太く */
 #sudoku_table tr:first-child td{
-    border-top: 2px solid #000;
+    border-top: 3px solid #000;
 }
 
+/* 1列目の左線を太く */
 #sudoku_table tr td:first-child{
-    border-left: 2px solid #000;
+    border-left: 3px solid #000;
+}
+
+/* 解くボタンに若干の余白 */
+#sub{
+    margin: 10px;
+}
+
+/* 実行時間を太字で表示 */
+#time{
+    margin-top: 20px;
+    font-weight: bold;
 }
