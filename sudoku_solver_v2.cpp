@@ -75,29 +75,59 @@ bool isValid(int row, int col, int num){
     return true;
 }
 
+// あるマスに置ける数字の候補を求める関数
+vector<int> GetCandidates(int row, int col){
+    vector<int> cs;
+    for(int num = 1; num <= 9; num++){
+        if(isValid(row, col, num)){
+            cs.push_back(num);
+        }
+    }
+
+    return cs;
+}
+
 // 実際に数字を置いていく関数
 bool Solve(){
+    int targetRow = -1, targetCol = -1, MinCount = 10;
+    vector<int> candidates;
+    // まず，空のマスを探す
     for(int row = 0; row < 9; row++){
         for(int col = 0; col < 9; col++){
-            // まず，空のマスを探す
             if(board.at(row).at(col) == 0){
-                for(int num = 1; num < 10; num++){
-                    if(isValid(row, col, num)){
-                        // 置ける数字を小さい順にとりあえず置く
-                        board.at(row).at(col) = num;
-                        if(Solve())
-                            return true;
-                        // ダメだったらやり直し
-                        board.at(row).at(col) = 0;
-                    }
+                // そのマスに置ける数字の候補数を求める
+                vector<int> c = GetCandidates(row, col);
+                // 暫定最小のものより小さければ更新
+                if(c.size() < MinCount){
+                    MinCount = c.size();
+                    targetRow = row;
+                    targetCol = col;
+                    candidates = c;
                 }
-                // どの数字も置けなかったら解なし
-                return false;
+
+                // 候補数1なら即採用
+                if(MinCount == 1)
+                    break;
+                // 候補数0ならアウト
+                else if(MinCount == 0)
+                    return false;
             }
         }
     }
     // 最後までやり切れたらそれが答え
-    return true;
+    if(targetRow == -1 && targetCol == -1)
+        return true;
+
+    for(int num : candidates){
+        // 候補の数字を小さい順にとりあえず置く
+        board.at(targetRow).at(targetCol) = num;
+        if(Solve())
+            return true;
+        // ダメだったらやり直し
+        board.at(targetRow).at(targetCol) = 0;
+    }
+
+    return false;
 }
 
 int main(){
